@@ -2,10 +2,9 @@ using UnityEngine;
 
 public class EnemyTraceController : MonoBehaviour
 {
-
-    public float moveSpeed = .5f;
-    public float raycastDistance = .2f;
-    public float tranceDistance = 2f;
+    public float moveSpeed = 5f;
+    public float raycastDistance = 2f;
+    public float traceDistance = 2f;
 
     private Transform player;
 
@@ -16,9 +15,9 @@ public class EnemyTraceController : MonoBehaviour
 
     private void Update()
     {
-         Vector2 direction = player.position - transform.position;
+        Vector2 direction = player.position - transform.position;
 
-        if (direction.magnitude > tranceDistance)
+        if (direction.magnitude > traceDistance)
             return;
 
         Vector2 directionNormalized = direction.normalized;
@@ -26,23 +25,21 @@ public class EnemyTraceController : MonoBehaviour
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, directionNormalized, raycastDistance);
         Debug.DrawRay(transform.position, directionNormalized * raycastDistance, Color.red);
 
-        foreach(RaycastHit2D rHIt in hits)
+        foreach (RaycastHit2D rHit in hits)
         {
-            if (rHIt.collider != null && rHIt.collider.CompareTag("Obstacle"))
+            if (rHit.collider != null && rHit.collider.CompareTag("Obstacle"))
             {
-                Vector3 alternativeDirection = Quaternion.Euler(0f, 0f, 90f) * direction;
-                transform.Translate(alternativeDirection * moveSpeed * Time.deltaTime);
+                Vector3 alternativeDirection = Quaternion.Euler(0f, 0f, -90f) * direction;
+                transform.Translate(alternativeDirection.normalized * moveSpeed * Time.deltaTime);
             }
             else
             {
                 transform.Translate(directionNormalized * moveSpeed * Time.deltaTime);
             }
-
         }
-
 
     }
 
 
-}
 
+}

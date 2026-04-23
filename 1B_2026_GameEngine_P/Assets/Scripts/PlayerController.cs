@@ -84,6 +84,14 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
+        if (collision.CompareTag("Trap"))
+        {
+            if (isGiant)
+                Destroy(collision.gameObject);
+            else
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
         if (collision.CompareTag("Finish"))
         {
             collision.GetComponent<LevelObject>().MoveToNextLevel();
@@ -97,6 +105,14 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
+        if (collision.CompareTag("Enemy2"))
+        {
+            if (isGiant)
+                Destroy(collision.gameObject);
+            else
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
         if (collision.CompareTag("Item"))
         {
             isGiant = true;
@@ -107,7 +123,7 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("SpeedItem"))
         {
             isMove = true;
-            Invoke(nameof(ResetMove), 3f);
+            Invoke(nameof(ResetMove), 7f);
             Destroy(collision.gameObject);
         }
 

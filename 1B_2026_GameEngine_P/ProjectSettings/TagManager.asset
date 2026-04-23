@@ -12,6 +12,8 @@ TagManager:
   - Item
   - JumpItem
   - SpeedItem
+  - Background
+  - Trap
   layers:
   - Default
   - TransparentFX
@@ -23,7 +25,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Background
   - 
   - 
   - 
@@ -48,6 +50,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Backgruond
+    uniqueID: 3106329287
     locked: 0
   m_RenderingLayers:
   - Default
